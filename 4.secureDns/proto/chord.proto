@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package chord;
+
+message Data {
+  map<string,string>data = 1;
+}
+message HashKey {
+  uint32 hashKey = 1;
+}
+message Node{
+    uint32 id = 1;
+    string ip = 2;
+}
+message NodeI{
+    uint32 id = 1;
+    string ip = 2;
+    uint32 i  = 3;
+}
+message NodeII{
+    uint32 rid = 1;
+    uint32 id = 2;
+    string ip = 3;
+    uint32 i  = 4;
+}
+message KeyValue{
+  string key = 1;
+  string value = 2;
+}
+message Empty{}
+
+service chordRPC {
+    rpc get_successor(Empty)                        returns (Node);
+    rpc get_predecessor(Empty)                      returns (Node);
+    rpc find_predecessor_rpc(HashKey)               returns (Node);
+    rpc find_successor_rpc(HashKey)                 returns (Node);
+    rpc get_data(Node)                             returns (Data);
+    rpc set_data(Data)                              returns (Empty); 
+    rpc change_finger_create_rpc(NodeI)             returns (Empty);
+    rpc change_finger_delete_rpc(NodeII)            returns (Empty);
+    rpc change_predecessor(Node)                    returns (Empty);
+    rpc change_successor(Node)                      returns (Empty);
+    rpc del_key_rpc (KeyValue)                      returns (Empty);
+    rpc add_key_rpc (KeyValue)                      returns (Empty);
+    rpc get_key_rpc (KeyValue)                      returns (KeyValue); 
+    rpc direct_add_rpc  (KeyValue)                  returns (Empty);
+    rpc direct_del_rpc  (KeyValue)                  returns (Empty);
+    rpc direct_get_rpc  (KeyValue)                  returns (KeyValue);
+    rpc leave_rpc   (Empty)                         returns (Empty);    
+}
+

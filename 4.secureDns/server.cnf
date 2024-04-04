@@ -1,0 +1,28 @@
+# sever.cnf
+
+[req]
+default_bits = 2048
+default_keyfile = server.key
+distinguished_name = req_distinguished_name
+req_extensions = req_ext
+
+[req_distinguished_name]
+countryName                 = Country Name (2 letter code)
+countryName_default         = CN
+stateOrProvinceName         = State or Province Name (full name)
+stateOrProvinceName_default = GD
+localityName                = Locality Name (eg, city)
+localityName_default        = GZ
+organizationName            = Organization Name (eg, company)
+organizationName_default    = sysu
+commonName                  = CommonName (e.g. server FQDN or YOUR name)
+commonName_default          = 127.0.0.1
+
+[req_ext]
+subjectAltName = @alt_names
+
+
+[alt_names]
+DNS.1   = localhost
+IP.1    = 172.19.58.138
+IP.2    = 127.0.0.1
